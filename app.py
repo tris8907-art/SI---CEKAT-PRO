@@ -1,10 +1,10 @@
 import streamlit as st
 import google.generativeai as genai
 
-# --- KONFIGURASI AI (Tersembunyi dari User) ---
-# Ganti dengan API Key dari AI Studio
-API_KEY = "ISI_API_KEY_ANDA_DISINI" 
-genai.configure(api_key=API_KEY)
+# Memanggil API Key dari Secrets Streamlit
+api_key_saya = st.secrets["GEMINI_API_KEY"]
+
+genai.configure(api_key=api_key_saya)
 
 # Instruksi Sistem Rahasia Anda
 SYSTEM_INSTRUCTION = "Anda adalah pakar analisis data. Ubah input berikut menjadi format laporan formal:"
@@ -40,4 +40,5 @@ with st.form("my_form"):
                     st.error(f"Terjadi kesalahan: {e}")
 
 st.divider()
+
 st.caption("Powered by Gemini AI | Data Anda aman dan instruksi sistem terenkripsi.")
